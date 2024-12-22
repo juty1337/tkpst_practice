@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'css/employee.list.css' %}">
+    <title>Заголовок страницы</title>
+</head>
+<body>
+   
+    
+    <form action="{% url 'logout' %}" method="post" id="logout-form">
+        {% csrf_token %}
+        <button type="submit">Выход</button>
+    </form>
+    <!-- Поле ввода для отображения URL редактирования сотрудника -->
+<!-- Поле ввода для отображения имени сотрудника -->
+<!-- Поле ввода для отображения имени сотрудника -->
+<div>
+    <label for="employee-account">Аккаунт сотрудника:</label>
+    <input type="text" id="employee-account" readonly placeholder="Выберите сотрудника">
+    <button onclick="openAdminPanel()">Редактировать</button>
+</div>
+
+<ul class="employee-list">
+    {% for employee in employees %}
+        <li>
+            <div class="employee-header">
+                <!-- Имя сотрудника, на котором можно нажать для раскрытия и для отображения в поле ввода -->
+                <span class="employee-name" onclick="setEmployeeAccount('{{ employee.id }}', '{{ employee.first_name }} {{ employee.last_name }}', this)">
+                    <span class="arrow">▶</span>
+                    {{ employee.first_name }} {{ employee.last_name }}
+                </span>
+            </div>
+            <!-- Скрытая информация о сотруднике -->
+            <div class="employee-details" style="display: none;">
+                адрес проживания: {{ employee.position }} <br>
+                Телефон: {{ employee.phone_number }} <br>
+                Email: {{ employee.email }} <br>
+                Адрес: {{ employee.address }} <br>
+                Должность: {{ employee.post }} <br>
+                День рождения: {{ employee.date_of_birth }} <br>
+                Дата трудоустройства: {{ employee.date_of_employment }}
+            </div>
+        </li>
+    {% empty %}
+        <li>Нет сотрудников.</li>
+    {% endfor %}
+</ul>
+
+
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    <script src="{% static 'js/employee_list.js' %}"></script>
+</body>
+</html>

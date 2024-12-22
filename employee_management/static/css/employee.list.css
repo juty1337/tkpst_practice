@@ -1,0 +1,52 @@
+/* Стили для поля ввода и кнопки редактирования */
+#employee-account {
+    padding: 5px;
+    width: 300px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Стили для информации сотрудника */
+.employee-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.employee-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.employee-name {
+    font-weight: bold;
+    color: #007BFF;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.arrow {
+    font-size: 14px;
+    margin-right: 10px;
+    transition: transform 0.2s ease;
+}
+
+.employee-details {
+    margin-left: 20px;
+    padding: 5px;
+    border-left: 2px solid #ddd;
+}
