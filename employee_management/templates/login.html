@@ -4,25 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/style.css">
-
-    <title>login</title>
+    <link rel="stylesheet" href="{% static 'css/style.login.css' %}">
+    <title>Login</title>
 </head>
 <body>
-    <h2>Login</h2>
+    <div class="container">
+        <div class="form-header">
+            <h2>Login</h2>
+        </div>
+        
+        {% if form.non_field_errors %}
+        <div class="error-message">
+            {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
 
-    {% if form.non_field_errors %}
-    <div class="error-message">
-        {% for error in form.non_field_errors %}
-            <p>{{ error }}</p>
-        {% endfor %}
+        <form method="post" class="login-form">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn">Login</button>
+            
+        </form>
     </div>
-{% endif %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-        <p>Нету аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a></p>
-    </form>
 </body>
 </html>
